@@ -1,18 +1,52 @@
-import React from 'react'
-import { Card, CardBody } from 'reactstrap'
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+import Head from "./Head"
+import "./header.css";
 
-function Header({name,title}) {
+const Header = () => {
+  const [click, setClick] = useState(false)
+
   return (
-    
-    <div className="text-center">
+    <>
+     
+      <header>
+        <nav className='flexSB'>
+          <ul className={click ? "mobile-nav" : "flexSB "} onClick={() => setClick(false)}>
 
-    <Card className=' bg-warning my-2'>
-    <CardBody>
-    <h1 className='text-center my-3 '>Welcome to Courses Application</h1>
-    </CardBody>
-    </Card>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
 
-    </div>
+            <li>
+              <Link to='/add-course'>AddCourse</Link>
+            </li>
+
+            <li>
+              <Link to='/update/:id'>UpdateCourse</Link>
+            </li>
+
+            <li>
+              <Link to='/view-courses'>Allcourses</Link>
+            </li>
+
+            <li>
+            <Link to='/About'>About</Link>
+          </li>
+            
+            <li>
+              <Link to='/Contact'>Contact</Link>
+            </li>
+            
+          </ul>
+          <div className='start'>
+            <div className='button'>GET CERTIFICATE</div>
+          </div>
+          <button className='toggle' onClick={() => setClick(!click)}>
+            {click ? <i className='fa fa-times'> </i> : <i className='fa fa-bars'></i>}
+          </button>
+        </nav>
+      </header>
+    </>
   )
 }
 
